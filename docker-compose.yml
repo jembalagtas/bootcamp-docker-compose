@@ -1,0 +1,19 @@
+version: "3.1"
+services:
+  jenkins:
+    container_name: "jenkins"
+    image: "jembim/bootcamp-jenkins:0.1"
+    restart: always
+    privileged: true
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    secrets:
+      - jenkins-user
+      - jenkins-pass
+
+secrets:
+  jenkins-user:
+    file: ./secrets/user.txt
+  jenkins-pass:
+    file: ./secrets/password.txt

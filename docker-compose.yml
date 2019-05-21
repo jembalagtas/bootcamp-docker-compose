@@ -31,4 +31,3 @@ secrets:
     file: ./secrets/user.txt
   jenkins-pass:
     file: ./secrets/password.txt
-    

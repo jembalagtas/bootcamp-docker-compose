@@ -5,6 +5,8 @@ services:
     image: "jembim/bootcamp-jenkins:0.1"
     restart: always
     privileged: true
+    networks:
+      - dockernetwork
     ports:
       - "8080:8080"
       - "50000:50000"
@@ -12,8 +14,21 @@ services:
       - jenkins-user
       - jenkins-pass
 
+  jfrog:
+    container_name: artifactory
+    image: "docker.bintray.io/jfrog/artifactory-cpp-ce:latest"
+    restart: always
+    networks:
+      - dockernetwork
+    ports:
+      - "8081:8081"
+
+networks:
+  dockernetwork:
+
 secrets:
   jenkins-user:
     file: ./secrets/user.txt
   jenkins-pass:
     file: ./secrets/password.txt
+    

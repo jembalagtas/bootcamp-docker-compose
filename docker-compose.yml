@@ -13,6 +13,8 @@ services:
     secrets:
       - jenkins-user
       - jenkins-pass
+    volumes:
+      - jenkins_home:/var/jenkins_home 
 
   jfrog:
     container_name: artifactory
@@ -22,6 +24,8 @@ services:
       - dockernetwork
     ports:
       - "8081:8081"
+    volumes:
+      - artifactory_data:/artifactory_data
 
   sonarqube:
     image: sonarqube:latest
@@ -88,6 +92,8 @@ networks:
   dockernetwork:
 
 volumes:
+  jenkins_home:
+  artifactory_data:
   sonarqube_conf:
   sonarqube_data:
   sonarqube_extensions:

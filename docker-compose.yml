@@ -57,6 +57,8 @@ services:
       - dockernetwork
     expose:
       - "4444"
+    ports:
+      - "4444:4444"
 
   selenium-node-chrome:
     container_name: selenium-node-chrome

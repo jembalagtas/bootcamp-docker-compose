@@ -33,22 +33,22 @@ services:
       - "8082:9000"
     networks:
       - dockernetwork
-    environment:
-      - sonar.jdbc.url=jdbc:postgresql://sonar-db:5432/sonar
-      - sonar.jdbc.username=sonar
-      - sonar.jdbc.password=sonar
+#    environment:
+#      - sonar.jdbc.url=jdbc:postgresql://sonar-db:5432/sonar
+#      - sonar.jdbc.username=sonar
+#      - sonar.jdbc.password=sonar
 #    volumes:
 #      - sonarqube_conf:/opt/sonarqube/conf
 #      - sonarqube_data:/opt/sonarqube/data
 #      - sonarqube_extensions:/opt/sonarqube/extensions
 
-  sonar-db:
-    image: postgres
-    networks:
-      - dockernetwork
-    environment:
-      - POSTGRES_USER=sonar
-      - POSTGRES_PASSWORD=sonar
+#  sonar-db:
+#    image: postgres
+#    networks:
+#      - dockernetwork
+#    environment:
+#      - POSTGRES_USER=sonar
+#      - POSTGRES_PASSWORD=sonar
 #    volumes:
 #      - postgresql:/var/lib/postgresql
 #      - postgresql_data:/var/lib/postgresql/data

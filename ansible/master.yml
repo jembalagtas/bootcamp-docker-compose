@@ -1,0 +1,7 @@
+---
+- name: Create DevOps Tools
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  roles:
+    - create-compose-file

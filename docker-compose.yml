@@ -2,7 +2,7 @@ version: "3.1"
 services:
   jenkins:
     container_name: "jenkins"
-    image: "jembim/bootcamp-jenkins:0.1"
+    image: "jembim/jenkins-poc:0.1"
     restart: always
     privileged: true
     networks:
@@ -13,8 +13,8 @@ services:
     secrets:
       - jenkins-user
       - jenkins-pass
-#    volumes:
-#      - jenkins_home:/var/jenkins_home 
+    volumes:
+      - jenkins_home:/var/jenkins_home 
 
   jfrog:
     container_name: artifactory
@@ -24,8 +24,8 @@ services:
       - dockernetwork
     ports:
       - "8081:8081"
-#    volumes:
-#      - artifactory_data:/artifactory_data
+    volumes:
+      - artifactory_data:/artifactory_data
 
   sonarqube:
     image: sonarqube:latest
@@ -37,10 +37,10 @@ services:
       - sonar.jdbc.url=jdbc:postgresql://sonar-db:5432/sonar
       - sonar.jdbc.username=sonar
       - sonar.jdbc.password=sonar
-#    volumes:
-#      - sonarqube_conf:/opt/sonarqube/conf
-#      - sonarqube_data:/opt/sonarqube/data
-#      - sonarqube_extensions:/opt/sonarqube/extensions
+    volumes:
+      - sonarqube_conf:/opt/sonarqube/conf
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
 
   sonar-db:
     image: postgres
@@ -49,9 +49,9 @@ services:
     environment:
       - POSTGRES_USER=sonar
       - POSTGRES_PASSWORD=sonar
-#    volumes:
-#      - postgresql:/var/lib/postgresql
-#      - postgresql_data:/var/lib/postgresql/data
+    volumes:
+      - postgresql:/var/lib/postgresql
+      - postgresql_data:/var/lib/postgresql/data
 
   selenium-hub:
     container_name: selenium-hub
@@ -91,14 +91,14 @@ services:
 networks:
   dockernetwork:
 
-#volumes:
-#  jenkins_home:
-#  artifactory_data:
-#  sonarqube_conf:
-#  sonarqube_data:
-#  sonarqube_extensions:
-#  postgresql:
-#  postgresql_data:
+volumes:
+  jenkins_home:
+  artifactory_data:
+  sonarqube_conf:
+  sonarqube_data:
+  sonarqube_extensions:
+  postgresql:
+  postgresql_data:
 
 secrets:
   jenkins-user:
